@@ -1,0 +1,14 @@
+<div *ngIf="filteredTasks | async as obs; else loading">
+    <mac-task-list
+    [tasks]="obs"
+    [taskFilterTypes]="taskFilterTypes"
+    [activeTaskFilterType]="activeTaskFilterType | async"
+    (outUpdateTask)="updateTask($event)"
+    (outShowDetails)="showDetails($event)"
+    (outActivateFilterType)="activateFilterType($event)"
+    (outAddTask)="addTask($event)">
+</mac-task-list>
+</div>
+<ng-template #loading>
+    Loading...
+</ng-template>

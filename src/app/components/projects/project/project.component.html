@@ -1,0 +1,21 @@
+<div *ngIf="project; else nothing">
+    <header class="header">
+        <mac-editor [content]="project.title" [showControls]="true" (outSaveEdit)="updateProjectTitle($event);">
+        </mac-editor>
+        <mac-editor [content]="project.description" [showControls]="true"
+            (outSaveEdit)="updateProjectDescription($event);"></mac-editor>
+    </header>
+    <mac-tabs [tabs]="tabs" [activeTab]="activeTab" (outActivateTab)="activateTab($event)">
+    </mac-tabs>
+    <div *ngIf="!activeTab; else tabsContent;" class="empty">
+        <h1>Please select any tab</h1>
+    </div>
+    <ng-template #tabsContent>
+        <router-outlet></router-outlet>
+    </ng-template>
+</div>
+<ng-template #nothing>
+    <div class="empty">
+        <h1>Select any project</h1>
+    </div>
+</ng-template>
